@@ -21,10 +21,20 @@ Será utilizado um dataset público de imagens com faces de pessoas para treinar
 
 [https://drive.google.com/drive/folders/1XDte2DL2Mf_hw4NsmGst7QtYoU7sMBVG](https://drive.google.com/drive/folders/1XDte2DL2Mf_hw4NsmGst7QtYoU7sMBVG)
 
-ou este outro, com: 
+Este dataset foi construido por [Chandrika Deb](https://chandrikadeb7.github.io/) utilizando o Bing Search API.
 
-[https://www.kaggle.com/andrewmvd/face-mask-detection?select=images](https://www.kaggle.com/andrewmvd/face-mask-detection?select=images)
+O dataser também foi contemplado com o disponibilizado na [Kaggle](https://www.kaggle.com/andrewmvd/face-mask-detection?select=images). Foi o dataset mais completo que encontramos em relação a quantidade de faces com máscaras e sem máscaras.
 
 ## Técnica
 
 O problema será resolvido utilizando técnicas de redes neurais artificiais para aprender a classificar faces com máscaras. Além disso, o projeto irá utilizar a biblioteca OpenCV para encontrar faces humanas em imagens, utilizando o algoritmo Viola-Jones e sua técnica de aprendizado de máquina AdaBoost.
+
+### Arquitetura da rede
+
+E entrada da rede neural será uma imagem convertida em uma matriz de três dimensões. Cada dimensão é uma das camadas de cor (red, green e blue) pelo fato da cor ser um atributo importante na classificação final. Além disso, cada imagem terá uma classe (com máscara e sem máscara), sendo este o resultado que a rede neural irá devolver. 
+
+No processo de detecção facial, as imagens serão convertidas em escala cinza, e processadas pela OpenCV, que irá aplicar os algoritmos e retornar uma lista contendo em cada posição uma outra lista com a posição que a face se encontra na imagem. 
+
+### Validação dos resultados
+
+Para testar acurácia, precisão e o recall da rede, será selecionado conjuntos de treinamento e testes para serem utilizados na rede neural. Após isso, será aplicado a técnica de validação cruzada Holdout. Com base nestes resultado o valor da quantidade épocas da rede será ajustada.
