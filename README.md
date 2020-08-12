@@ -23,7 +23,7 @@ Será utilizado um dataset público de imagens com faces de pessoas para treinar
 
 Este dataset foi construido por [Chandrika Deb](https://chandrikadeb7.github.io/) utilizando o Bing Search API.
 
-O dataser também foi contemplado com o disponibilizado na [Kaggle](https://www.kaggle.com/andrewmvd/face-mask-detection?select=images). Foi o dataset mais completo que encontramos em relação a quantidade de faces com máscaras e sem máscaras.
+O dataset também foi complementado com o disponibilizado na [Kaggle](https://www.kaggle.com/andrewmvd/face-mask-detection?select=images). Foi o dataset mais completo que encontramos em relação a quantidade de faces com máscaras e sem máscaras.
 
 ## Técnica
 
