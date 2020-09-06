@@ -21,10 +21,14 @@ Será utilizado um dataset público de imagens com faces de pessoas para treinar
 
 [https://drive.google.com/drive/folders/1XDte2DL2Mf_hw4NsmGst7QtYoU7sMBVG](https://drive.google.com/drive/folders/1XDte2DL2Mf_hw4NsmGst7QtYoU7sMBVG)
 
-ou este outro, com: 
+ou este outro, com:
 
 [https://www.kaggle.com/andrewmvd/face-mask-detection?select=images](https://www.kaggle.com/andrewmvd/face-mask-detection?select=images)
 
 ## Técnica
 
 O problema será resolvido utilizando técnicas de redes neurais artificiais para aprender a classificar faces com máscaras. Além disso, o projeto irá utilizar a biblioteca OpenCV para encontrar faces humanas em imagens, utilizando o algoritmo Viola-Jones e sua técnica de aprendizado de máquina AdaBoost.
+<!--
+```shell
+tflite_convert --keras_model_file=mask_detector  --output_file=mask_detector.tflite
+``` -->

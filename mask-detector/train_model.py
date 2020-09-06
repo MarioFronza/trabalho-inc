@@ -16,7 +16,7 @@ from tensorflow.keras.utils import to_categorical
 class MaskDetectorModel:
     def __init__(self):
         self.learning_rate = 1e-4
-        self.number_of_epochs = 15
+        self.number_of_epochs = 20
         self.bs = 32
 
         self.data = []
@@ -105,10 +105,9 @@ class MaskDetectorModel:
 
     def evaluate_network(self):
         self.network_model.predict(self.test_x, batch_size=self.bs)
-        self.network_model.save("model", save_format="h5")
+        self.network_model.save("mask_detector", save_format="h5")
 
 
 if __name__ == "__main__":
     model = MaskDetectorModel()
     model.start()
-x
