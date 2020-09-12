@@ -1,5 +1,7 @@
+import matplotlib.pyplot as plt
 import numpy as np
 from imutils import paths
+from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from tensorflow.keras.applications import MobileNetV2
@@ -15,34 +17,38 @@ from tensorflow.keras.utils import to_categorical
 
 class MaskDetectorModel:
     def __init__(self):
-        self.learning_rate = 1e-4
-        self.number_of_epochs = 20
+        self.lr = 1e-4
+        self.number_of_epochs = 30
         self.bs = 32
 
         self.data = []
         self.labels = []
 
-        self.train_x = []
-        self.train_y = []
-        self.test_x = []
-        self.test_y = []
+        self.train_set_x = []
+        self.train_set_y = []
+        self.test_set_x = []
+        self.test_set_y = []
 
         self.augmentation = {}
         self.base_model = {}
         self.network_model = {}
+        self.label_binarizer = {}
+        self.history = {}
 
     def start(self):
         self.read_images_from_dataset()
+        self.binarizate_labels()
         self.define_training_and_testing_sets()
         self.define_training_image_generator()
-        self.define_model_head()
+        self.define_mobilenetv2_network()
+        self.define_model_layers()
         self.compile_model()
-        self.train_head()
+        self.train_model()
         self.evaluate_network()
 
     def read_images_from_dataset(self):
         imagePaths = list(paths.list_images("dataset"))
-        label_binarizer = LabelBinarizer()
+        self.label_binarizer = LabelBinarizer()
         for imagePath in imagePaths:
             [pathStart, _] = imagePath.split("-")
             label = pathStart.split("/")[-2]
@@ -55,12 +61,14 @@ class MaskDetectorModel:
             self.labels.append(label)
 
         self.data = np.array(self.data, dtype="float32")
+
+    def binarizate_labels(self):
         self.labels = np.array(self.labels)
-        self.labels = label_binarizer.fit_transform(self.labels)
+        self.labels = self.label_binarizer.fit_transform(self.labels)
         self.labels = to_categorical(self.labels)
 
     def define_training_and_testing_sets(self):
-        (self.train_x, self.test_x, self.train_y, self.test_y) = train_test_split(
+        (self.train_set_x, self.test_set_x, self.train_set_y, self.test_set_y) = train_test_split(
             self.data, self.labels, test_size=0.20, stratify=self.labels, random_state=42)
 
     def define_training_image_generator(self):
@@ -73,39 +81,62 @@ class MaskDetectorModel:
             horizontal_flip=True,
             fill_mode="nearest")
 
+    def define_mobilenetv2_network(self):
         self.base_model = MobileNetV2(weights="imagenet", include_top=False,
                                       input_tensor=Input(shape=(224, 224, 3)))
 
-    def define_model_head(self):
+    def define_model_layers(self):
         head_model = self.base_model.output
         head_model = AveragePooling2D(pool_size=(7, 7))(head_model)
         head_model = Flatten(name="flatten")(head_model)
-        head_model = Dense(128, activation="relu")(head_model)
+        head_model = Dense(128, activation="relu")(
+            head_model)
         head_model = Dropout(0.5)(head_model)
-        head_model = Dense(2, activation="softmax")(head_model)
+        head_model = Dense(2, activation="softmax")(
+            head_model)
         self.network_model = Model(
             inputs=self.base_model.input, outputs=head_model)
+
         for layer in self.base_model.layers:
             layer.trainable = False
 
     def compile_model(self):
-        network_options = Adam(lr=self.learning_rate,
-                               decay=self.learning_rate / self.number_of_epochs)
-        self.network_model.compile(loss="binary_crossentropy", optimizer=network_options,
+        network_adam_options = Adam(
+            lr=self.lr, decay=self.lr / self.number_of_epochs)
+        self.network_model.compile(loss="binary_crossentropy", optimizer=network_adam_options,
                                    metrics=["accuracy"])
 
-    def train_head(self):
-        self.network_model.fit(
+    def train_model(self):
+        self.history = self.network_model.fit(
             self.augmentation.flow(
-                self.train_x, self.train_y, batch_size=self.bs),
-            steps_per_epoch=len(self.train_x) // self.bs,
-            validation_data=(self.test_x, self.test_y),
-            validation_steps=len(self.test_x) // self.bs,
+                self.train_set_x, self.train_set_y, batch_size=self.bs),
+            steps_per_epoch=len(self.train_set_x) // self.bs,
+            validation_data=(self.test_set_x, self.test_set_y),
+            validation_steps=len(self.test_set_x) // self.bs,
             epochs=self.number_of_epochs)
 
     def evaluate_network(self):
-        self.network_model.predict(self.test_x, batch_size=self.bs)
+        y_pred = self.network_model.predict(
+            self.test_set_x, batch_size=self.bs)
         self.network_model.save("mask_detector", save_format="h5")
+        y_pred = np.argmax(y_pred, axis=1)
+        print(classification_report(self.test_set_y.argmax(axis=1), y_pred,
+                                    target_names=self.label_binarizer.classes_))
+        plt.style.use("ggplot")
+        plt.figure()
+        plt.plot(np.arange(0, self.number_of_epochs),
+                 self.history.history["loss"], label="train_loss")
+        plt.plot(np.arange(0, self.number_of_epochs),
+                 self.history.history["val_loss"], label="val_loss")
+        plt.plot(np.arange(0, self.number_of_epochs),
+                 self.history.history["accuracy"], label="train_acc")
+        plt.plot(np.arange(0, self.number_of_epochs),
+                 self.history.history["val_accuracy"], label="val_acc")
+        plt.title("Training Loss and Accuracy")
+        plt.xlabel("Epoch #")
+        plt.ylabel("Loss/Accuracy")
+        plt.legend(loc="lower left")
+        plt.savefig("plot")
 
 
 if __name__ == "__main__":
