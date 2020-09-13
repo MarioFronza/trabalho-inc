@@ -1,0 +1,3 @@
+ninja: Entering directory `/Users/mariofronza/workspace/udesc.com/MaskDetector/app/.cxx/cmake/debug/x86'
+[1/2] Building CXX object CMakeFiles/detection_based_tracker.dir/DetectionBasedTracker_jni.cpp.o
+[2/2] Linking CXX shared library /Users/mariofronza/workspace/udesc.com/MaskDetector/app/build/intermediates/cmake/debug/obj/x86/libdetection_based_tracker.so

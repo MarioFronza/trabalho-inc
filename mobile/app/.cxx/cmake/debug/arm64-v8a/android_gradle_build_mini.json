@@ -1,0 +1,27 @@
+{
+  "buildFiles": [
+    "/Users/mariofronza/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake",
+    "/Users/mariofronza/workspace/udesc.com/sdk/native/jni/abi-arm64-v8a/OpenCVModules.cmake",
+    "/Users/mariofronza/Android/sdk/ndk/21.0.6113669/build/cmake/platforms.cmake",
+    "/Users/mariofronza/workspace/udesc.com/sdk/native/jni/abi-arm64-v8a/OpenCVModules-release.cmake",
+    "/Users/mariofronza/workspace/udesc.com/sdk/native/jni/OpenCVConfig.cmake",
+    "/Users/mariofronza/workspace/udesc.com/MaskDetector/app/jni/CMakeLists.txt",
+    "/Users/mariofronza/workspace/udesc.com/sdk/native/jni/OpenCVConfig-version.cmake",
+    "/Users/mariofronza/workspace/udesc.com/sdk/native/jni/abi-arm64-v8a/OpenCVConfig.cmake"
+  ],
+  "cleanCommands": [
+    "/Users/mariofronza/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/mariofronza/workspace/udesc.com/MaskDetector/app/.cxx/cmake/debug/arm64-v8a\" clean"
+  ],
+  "buildTargetsCommand": "/Users/mariofronza/Android/sdk/cmake/3.10.2.4988404/bin/ninja  -C \"/Users/mariofronza/workspace/udesc.com/MaskDetector/app/.cxx/cmake/debug/arm64-v8a\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "detection_based_tracker-Debug-arm64-v8a": {
+      "artifactName": "detection_based_tracker",
+      "buildCommand": "/Users/mariofronza/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/mariofronza/workspace/udesc.com/MaskDetector/app/.cxx/cmake/debug/arm64-v8a\" detection_based_tracker",
+      "abi": "arm64-v8a",
+      "output": "/Users/mariofronza/workspace/udesc.com/MaskDetector/app/build/intermediates/cmake/debug/obj/arm64-v8a/libdetection_based_tracker.so",
+      "runtimeFiles": [
+        "/Users/mariofronza/workspace/udesc.com/sdk/native/libs/arm64-v8a/libopencv_java4.so"
+      ]
+    }
+  }
+}

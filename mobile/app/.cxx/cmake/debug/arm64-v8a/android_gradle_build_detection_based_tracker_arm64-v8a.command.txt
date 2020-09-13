@@ -1,0 +1,7 @@
+Executable : /Users/mariofronza/Android/sdk/cmake/3.10.2.4988404/bin/ninja
+arguments : 
+-C
+/Users/mariofronza/workspace/udesc.com/MaskDetector/app/.cxx/cmake/debug/arm64-v8a
+detection_based_tracker
+jvmArgs : 
+

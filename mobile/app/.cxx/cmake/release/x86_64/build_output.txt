@@ -1,0 +1,9 @@
+Check for working CXX compiler: /Users/mariofronza/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++
+Check for working CXX compiler: /Users/mariofronza/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ -- works
+Detecting CXX compiler ABI info
+Detecting CXX compiler ABI info - done
+Detecting CXX compile features
+Detecting CXX compile features - done
+ANDROID_ABI=x86_64
+Found OpenCV: /Users/mariofronza/workspace/udesc.com (found version "4.4.0") found components:  opencv_java 
+Configuring done

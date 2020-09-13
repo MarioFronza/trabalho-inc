@@ -1,0 +1,6 @@
+include ':app'
+rootProject.name = "MaskDetector"
+
+def opencvsdk='../'
+include ':opencv'
+project(':opencv').projectDir = new File(opencvsdk + '/sdk')

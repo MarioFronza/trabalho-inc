@@ -1,0 +1,15 @@
+# ninja log v5
+1	1566	1597582155	CMakeFiles/detection_based_tracker.dir/DetectionBasedTracker_jni.cpp.o	8e669c7ecb83c682
+1567	1618	1597582155	/Users/mariofronza/workspace/udesc.com/MaskDetector/app/build/intermediates/cmake/debug/obj/x86_64/libdetection_based_tracker.so	2bda1057cf1ff737
+0	9	0	clean	7733aaa7ef002e99
+0	11	0	clean	7733aaa7ef002e99
+2	1393	1597582927	CMakeFiles/detection_based_tracker.dir/DetectionBasedTracker_jni.cpp.o	8e669c7ecb83c682
+1393	1484	1597582927	/Users/mariofronza/workspace/udesc.com/MaskDetector/app/build/intermediates/cmake/debug/obj/x86_64/libdetection_based_tracker.so	2bda1057cf1ff737
+0	7	0	clean	7733aaa7ef002e99
+0	5	0	clean	7733aaa7ef002e99
+0	11	0	clean	7733aaa7ef002e99
+0	8	0	clean	7733aaa7ef002e99
+1	9	0	clean	7733aaa7ef002e99
+0	59	1600010960	build.ninja	44cc9fad90ec7d24
+0	10	0	clean	7733aaa7ef002e99
+0	10	0	clean	7733aaa7ef002e99
