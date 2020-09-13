@@ -1,5 +1,7 @@
 ## Contador de pessoas com máscaras
 
+Clique [aqui](https://www.youtube.com/watch?v=v8kghbMAhjs&feature=youtu.be) para visualizar o vídeo do projeto.
+
 ## Equipe
 
 | [<img src="https://avatars0.githubusercontent.com/u/31224982?s=460&u=a5c288a099540e11babe8b352e5d62ab28bae601&v=4" width="150px;"/>](https://github.com/BrunoRech) | [<img src="https://avatars2.githubusercontent.com/u/26040800?v=3&s=150" width="150px;"/>](https://github.com/MarioFronza) |
@@ -114,6 +116,8 @@ Após o treinamento, que pode levar alguns minutos, o aquivo mask_detector.model
 - `python mask-detector/detect_camera_mask.py`
 
 Uma camera será aberta utilizando a webcam de seu computador, o script irá tentar encontrar faces para aplicar o modelo criado pela etapa anterior. Um quadrado vermelho deve aparecer para pessoas que não estão utilizando máscaras, e um verde caso a máscara esteja presente.
+
+Para testar o aplicativo, baixe o arquivo app.apk e instale em seu smartphone.
 
 <!--
 ```shell
